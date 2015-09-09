@@ -141,9 +141,10 @@ MAKE_CATEGORIES_LOADABLE(UIAccessibilityElement_KIFAdditions)
                     [scrollView scrollRectToVisible:elementFrame animated:YES];
                 }
             }
-            
+
+            NSUInteger wait = [UIView areAnimationsEnabled] ? 0.3: 0;
             // Give the scroll view a small amount of time to perform the scroll.
-            CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.3, false);
+            CFRunLoopRunInMode(kCFRunLoopDefaultMode, wait, false);
         }
         
         superview = superview.superview;
