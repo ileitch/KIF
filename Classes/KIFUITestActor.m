@@ -133,10 +133,12 @@
     
     NSTimeInterval maximumWaitingTimeInterval = timeout;
     if (maximumWaitingTimeInterval <= kStabilizationWait) {
-        if(maximumWaitingTimeInterval >= 0) {
+        if (maximumWaitingTimeInterval > 0) {
             [self waitForTimeInterval:maximumWaitingTimeInterval];
+        } else {
+            CFRunLoopRunInMode([[UIApplication sharedApplication] currentRunLoopMode] ?: kCFRunLoopDefaultMode, 0, false);
         }
-        
+
         return;
     }
     
